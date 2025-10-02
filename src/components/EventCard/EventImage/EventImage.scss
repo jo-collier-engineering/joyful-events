@@ -1,0 +1,89 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.event-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background-color: $color-dark-gray;
+  position: relative;
+  display: flex;
+  
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba($color-medium-gray, 0.2);
+    color: $color-medium-gray;
+    font-size: $font-size-sm;
+  }
+  
+  &__badges {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+    z-index: 2;
+  }
+  
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba($color-white, 0.6) 0%, rgba($color-white, 0.3) 50%, rgba($color-white, 0) 100%);
+    padding: $spacing-md;
+    z-index: 2;
+  }
+
+  &__play-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $radius-full;
+    background-color: rgba($color-dark-gray, 0.5);
+    color: $color-white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-base;
+    backdrop-filter: blur(8px);
+    
+    &:hover {
+      background-color: rgba($color-dark-gray, 0.7);
+      transform: scale(1.05);
+    }
+    
+    &:focus {
+      outline: 3px solid $color-focus;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px rgba(255, 247, 0, 0.4);
+    }
+    
+    &:active {
+      transform: scale(0.95);
+    }
+    
+    @media (max-width: 768px) {
+      width: 44px;
+      height: 44px;
+    }
+    
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
