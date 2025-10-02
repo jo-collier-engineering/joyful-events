@@ -4,17 +4,21 @@ A responsive, mobile-first React application for displaying DICE events with adv
 
 ## 📸 Screenshots
 
+<div align="center">
+
+### Mobile View
+<img src="screenshots/mobile-view.png" alt="Mobile view showing single event card" width="250">
+
+### Tablet View  
+<img src="screenshots/tablet-view.png" alt="Tablet view showing 2-column event grid" width="500">
+
 ### Desktop View
-*[Screenshot of desktop layout with 3-column grid, event cards, and drawer]*
+<img src="screenshots/desktop-view.png" alt="Desktop view showing 3-column event grid" width="650">
 
-### Mobile View  
-*[Screenshot of mobile layout with single column and responsive design]*
+### Event Drawer
+<img src="screenshots/event-drawer.png" alt="Event drawer with detailed information" width="650">
 
-### Accessibility Features
-*[Screenshot showing focus states, ARIA labels, and keyboard navigation]*
-
-### Audio Integration
-*[Screenshot of event card with audio overlay and play button]*
+</div>
 
 ## 🎯 Tech Test Implementation
 
