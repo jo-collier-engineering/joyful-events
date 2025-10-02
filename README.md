@@ -33,7 +33,7 @@ This project fulfills the DICE tech test requirements:
 - **Imgix image optimization** for performance
 
 ### ✅ Enhanced Features
-- **Audio preview playback** (Spotify/Apple Music tracks)
+- **Audio preview playback** (Spotify only)
 - **Event reminders** system
 - **Detailed event drawer** with full information
 - **AAA accessibility compliance** (WCAG 2.2)
@@ -244,6 +244,13 @@ This tech test was a fantastic opportunity to showcase modern React development 
 - **Coming up with punny app names for the project** 
 
 The project demonstrates not just technical competency, but also consideration for real-world users, maintainable code architecture, and attention to detail that goes beyond basic requirements.
+
+## 🚀 Future Improvements
+
+### Backend Proxy for Apple Music Previews
+Currently, audio previews only work for Spotify tracks due to CORS restrictions on Apple Music's preview URLs. A future enhancement would be to implement a backend proxy service to:
+- Fetch Apple Music preview audio files server-side
+- Serve them through the backend with proper CORS headers. This would require a Node.js/Express backend endpoint like `/api/proxy-audio?url=...` to bypass cross-origin restrictions.
 
 ## 🤝 Contributing
 

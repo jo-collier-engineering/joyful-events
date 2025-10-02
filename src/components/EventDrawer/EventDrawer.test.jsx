@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect } from 'vitest';
 import EventDrawer from './EventDrawer';
-import { mockFeaturedEvent } from '../../test/mockData';
+import { mockFeaturedEvent, mockEventWithOnlyAppleMusic } from '../../test/mockData';
 
 describe('EventDrawer - Core Functionality', () => {
   const defaultProps = {
@@ -121,5 +121,11 @@ describe('EventDrawer - Core Functionality', () => {
     expect(window.confirm).toHaveBeenCalledWith(
       expect.stringContaining('Set reminder for')
     );
+  });
+
+  it('does not show audio button when only Apple Music tracks are available', () => {
+    render(<EventDrawer {...defaultProps} event={mockEventWithOnlyAppleMusic} />);
+    // Apple Music tracks are blocked by CORS, so no audio button should appear
+    expect(screen.queryByRole('button', { name: /play audio preview/i })).not.toBeInTheDocument();
   });
 });

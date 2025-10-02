@@ -193,6 +193,20 @@ export const mockEventWithoutAudio = {
   spotify_tracks: [],
 };
 
+export const mockEventWithOnlyAppleMusic = {
+  ...mockEventBase,
+  id: "apple-only-event-1",
+  name: "Event With Only Apple Music",
+  apple_music_tracks: [
+    {
+      open_url: "https://music.apple.com/track/789",
+      preview_url: "test-apple-preview.mp3",
+      title: "Test Apple Track"
+    }
+  ],
+  spotify_tracks: [], // No Spotify tracks
+};
+
 // Multiple events for pagination tests
 export const mockEvents = [
   mockFeaturedEvent,

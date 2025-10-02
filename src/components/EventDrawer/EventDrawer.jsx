@@ -44,7 +44,7 @@ const EventDrawer = ({
   const isOnSale = sale_start_date ? new Date(sale_start_date) <= new Date() : true;
   
   const hasAudio = Boolean(
-    (apple_music_tracks && apple_music_tracks.length > 0) || 
+    // (apple_music_tracks && apple_music_tracks.length > 0) || 
     (spotify_tracks && spotify_tracks.length > 0) ||
     audio_preview_url ||
     preview_url

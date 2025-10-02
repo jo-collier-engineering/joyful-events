@@ -32,8 +32,6 @@ const EventsPage = () => {
       } else {
         setLoading(true);
       }
-
-      console.log(`Fetching events - venue: "${venue}", page: ${page}, append: ${append}`);
       
       const { events: newEvents, hasMore: moreAvailable } = await fetchEvents({
         venue,
@@ -41,12 +39,9 @@ const EventsPage = () => {
         pageSize: DEFAULT_PAGE_SIZE,
       });
 
-      console.log(`Received ${newEvents.length} events, hasMore: ${moreAvailable}`);
-
       if (append) {
         setEvents((prev) => {
           const updated = [...prev, ...newEvents];
-          console.log(`Total events after append: ${updated.length}`);
           return updated;
         });
       } else {
@@ -55,11 +50,6 @@ const EventsPage = () => {
 
       setHasMore(moreAvailable);
       setCurrentPage(page);
-      
-      if (append && (!newEvents || newEvents.length === 0)) {
-        console.log('No more events available, hiding load more button');
-      }
-      
     } catch (error) {
       console.error('Error loading events:', error);
       const message = getErrorMessage(error);
@@ -79,7 +69,6 @@ const EventsPage = () => {
       const loadInitialEvents = async () => {
         try {
           setLoading(true);
-          console.log('Fetching initial events - venue: "", page: 1, append: false');
           
           const { events: newEvents, hasMore: moreAvailable } = await fetchEvents({
             venue: '',
@@ -87,7 +76,6 @@ const EventsPage = () => {
             pageSize: DEFAULT_PAGE_SIZE,
           });
 
-          console.log(`Received ${newEvents.length} events, hasMore: ${moreAvailable}`);
           setEvents(newEvents);
           setHasMore(moreAvailable);
           setCurrentPage(1);
@@ -113,7 +101,6 @@ const EventsPage = () => {
 
   const handleLoadMore = () => {
     if (loadingMore) return;
-    console.log(`Loading page ${currentPage + 1} for venue: "${venueQuery}"`);
     loadEvents(venueQuery, currentPage + 1, true);
   };
 
@@ -153,12 +140,15 @@ const EventsPage = () => {
     }
 
     const spotifyTrack = event.spotify_tracks?.[0];
-    const appleMusicTrack = event.apple_music_tracks?.[0];
-    const track = spotifyTrack || appleMusicTrack;
-    const previewUrl = track?.preview_url;
+    // Note: Apple Music preview URLs blocked by CORS - would require backend proxy
+    // const appleMusicTrack = event.apple_music_tracks?.[0];
+    // const track = spotifyTrack || appleMusicTrack;
+    const previewUrl = spotifyTrack?.preview_url;
     
     if (previewUrl) {
-      audioPlayer.play(previewUrl);
+      audioPlayer.play(previewUrl, (error) => {
+        setCurrentlyPlayingEventId(null);
+      });
       setCurrentlyPlayingEventId(event.id);
     }
   };

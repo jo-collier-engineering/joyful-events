@@ -4,7 +4,7 @@ class AudioPlayer {
     this.currentTrack = null;
   }
 
-  play(trackUrl) {
+  play(trackUrl, onError) {
     this.stop();
 
     this.audio = new Audio(trackUrl);
@@ -12,6 +12,9 @@ class AudioPlayer {
     
     this.audio.play().catch((error) => {
       console.error('Error playing audio:', error);
+      if (onError) {
+        onError(error);
+      }
     });
 
     return this.audio;

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi, describe, it, expect } from 'vitest';
 import EventCard from './EventCard';
-import { mockFeaturedEvent, mockPreSaleEvent, mockSoldOutEvent } from '../../test/mockData';
+import { mockFeaturedEvent, mockPreSaleEvent, mockSoldOutEvent, mockEventWithOnlyAppleMusic } from '../../test/mockData';
 
 describe('EventCard - Core Functionality', () => {
   const defaultProps = {
@@ -71,5 +71,11 @@ describe('EventCard - Core Functionality', () => {
     render(<EventCard {...defaultProps} event={mockPreSaleEvent} />);
     // Test that "On Sale Now" badge does not appear for pre-sale events
     expect(screen.queryByText('On Sale Now')).not.toBeInTheDocument();
+  });
+
+  it('does not show audio button when only Apple Music tracks are available', () => {
+    render(<EventCard {...defaultProps} event={mockEventWithOnlyAppleMusic} />);
+    // Apple Music tracks are blocked by CORS, so no audio button should appear
+    expect(screen.queryByRole('button', { name: /play audio preview/i })).not.toBeInTheDocument();
   });
 });
