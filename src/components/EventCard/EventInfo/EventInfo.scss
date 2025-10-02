@@ -1,0 +1,42 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  justify-content: space-between;
+  
+  &__date {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-yellow-green;
+    text-transform: uppercase;
+  }
+  
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    line-height: 1.3;
+    
+    @include respond-to('sm') {
+      font-size: $font-size-xl;
+    }
+  }
+  
+  &__venue,
+  &__location {
+    font-size: $font-size-sm;
+    color: $color-medium-gray;
+  }
+  
+  &__price {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    
+    @include respond-to('sm') {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
