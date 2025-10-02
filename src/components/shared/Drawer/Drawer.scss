@@ -1,0 +1,128 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: $z-index-drawer;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  
+  &.drawer--closing {
+    .drawer__overlay {
+      animation: fadeOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .drawer__panel {
+      animation: slideOutRight 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+  }
+  
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba($color-dark-gray, 0.75);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  &__panel {
+    position: relative;
+    background-color: #0D0D0D;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: $shadow-2xl;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    @include respond-to('sm') {
+      width: 480px;
+    }
+    
+    @include respond-to('md') {
+      width: 560px;
+    }
+    
+    @include respond-to('xl') {
+      width: 640px;
+    }
+  }
+  
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: $spacing-md;
+  }
+  
+  &__close {
+    padding: $spacing-sm;
+    border-radius: $radius-full;
+    color: $color-white;
+    background: transparent;
+    border: none;
+    transition: background-color $transition-base;
+    
+    &:hover {
+      background-color: rgba($color-white, 0.1);
+    }
+    
+    &:focus {
+      @include focus-ring;
+    }
+  }
+  
+  &__content {
+    overflow-y: auto;
+    padding: $spacing-md;
+    @include custom-scrollbar($color-medium-gray, $color-dark-gray);
+    
+    @include respond-to('sm') {
+      padding: $spacing-lg;
+    }
+    
+    @include respond-to('md') {
+      padding: $spacing-xl;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
