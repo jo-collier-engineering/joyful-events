@@ -1,0 +1,56 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #141414;
+  color: $color-white;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  
+  a {
+    color: $color-accent-aaa;
+    
+    &:hover {
+      color: $color-hover-primary;
+    }
+    
+    &:focus {
+      outline: 3px solid $color-focus;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px rgba(255, 247, 0, 0.4);
+    }
+  }
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+.sr-only {
+  @include sr-only;
+}
