@@ -1,0 +1,27 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: $radius-full;
+  font-size: 0.625rem; // 10px
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
+  @include respond-to('sm') {
+    padding: 0.25rem 0.75rem;
+    font-size: $font-size-xs;
+  }
+  
+  &--black {
+    background-color: $color-dark-gray;
+    color: $color-white;
+  }
+  
+  &--yellow {
+    background-color: $color-yellow-green;
+    color: $color-dark-gray;
+  }
+}
