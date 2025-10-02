@@ -1,0 +1,7 @@
+@use '../../../styles/variables' as *;
+
+.loading-state {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 0;
+}

@@ -1,0 +1,25 @@
+@use '../../../styles/variables' as *;
+
+.no-results-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-md;
+  padding: 5rem 0;
+  text-align: center;
+  
+  &__icon {
+    color: $color-medium-gray;
+  }
+  
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+  }
+  
+  &__text {
+    color: $color-medium-gray;
+    max-width: 28rem;
+  }
+}
