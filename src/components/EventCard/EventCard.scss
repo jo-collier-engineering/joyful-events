@@ -1,0 +1,38 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.event-card {
+  background-color: #0D0D0D;
+  border-radius: $radius-xl;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  transition: transform $transition-slow, box-shadow $transition-slow;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.6);
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: $spacing-md;
+  }
+  
+  &__price {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+  }
+}
