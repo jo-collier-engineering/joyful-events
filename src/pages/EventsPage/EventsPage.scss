@@ -1,0 +1,43 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.events-page {
+  min-height: 100vh;
+  
+  &__main {
+    width: 100%;
+  }
+  
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: $spacing-md $spacing-md;
+    
+    @include respond-to('sm') {
+      padding: $spacing-lg $spacing-md;
+    }
+    
+    @include respond-to('xl') {
+      padding: $spacing-xl $spacing-lg;
+    }
+  }
+  
+  &__load-more {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-lg;
+    
+    @include respond-to('sm') {
+      margin-top: $spacing-2xl;
+    }
+    
+    button {
+      width: 100%;
+      
+      @include respond-to('sm') {
+        width: auto;
+        min-width: 200px;
+      }
+    }
+  }
+}
