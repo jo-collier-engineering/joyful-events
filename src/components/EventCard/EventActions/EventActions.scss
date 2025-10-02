@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  flex-shrink: 0;
+  min-width: 140px;
+  align-self: flex-start;
+  
+  &__primary,
+  &__secondary {
+    width: 100%;
+  }
+}
