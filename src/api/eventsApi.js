@@ -8,12 +8,12 @@ export const fetchEvents = async ({ venue = '', page = 1, pageSize = DEFAULT_PAG
     throw new Error('API key not found. Please check your environment variables.');
   }
   
-  const today = new Date().toISOString().split('T')[0]; 
+  const now = new Date().toISOString(); 
   
   const params = new URLSearchParams({
     'page[size]': pageSize,
     'page[number]': page,
-    'filter[date_from]': today,
+    'filter[date_from]': now,
   });
 
   if (venue) {

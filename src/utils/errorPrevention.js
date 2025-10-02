@@ -1,4 +1,4 @@
-import { getCheapestPrice } from './currencyUtils';
+import { getCheapestPrice, formatPrice } from './currencyUtils';
 
 export const confirmDestructiveAction = (message) => {
   return new Promise((resolve) => {
@@ -17,13 +17,7 @@ export const confirmBooking = (event) => {
     
     let priceDisplay = 'TBA';
     if (price !== null && price !== undefined) {
-      const amount = price / 100;
-      priceDisplay = new Intl.NumberFormat('en-GB', {
-        style: 'currency',
-        currency: currency,
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount);
+      priceDisplay = formatPrice(price, currency);
     }
     
     const eventDate = new Date(date).toLocaleDateString();
