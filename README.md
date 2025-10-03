@@ -56,6 +56,55 @@ This project fulfills the DICE tech test requirements:
 - **Smooth animations** - slide-in drawer, hover effects, focus transitions
 - **Visual hierarchy** - clear information structure with consistent spacing
 
+## 📱 Responsive Design
+
+### Breakpoints
+- **Mobile**: < 768px (1 column grid)
+- **Tablet**: 768px - 1024px (2 column grid)  
+- **Desktop**: > 1024px (3 column grid)
+
+### Mobile-First Approach
+- Base styles for mobile devices
+- Progressive enhancement for larger screens
+- Touch-friendly interactions (44px minimum targets)
+- Optimized typography scaling
+
+## 🔧 API Integration
+
+### DICE API
+- **Endpoint**: `https://events-api.dice.fm/v1/events`
+- **Authentication**: `x-api-key` header
+- **Query parameters**: `filter[venues]`, `page[size]`, `filter[date_from]`
+- **Error handling**: Graceful degradation with fallback states
+
+### Image Optimization
+- **Imgix integration** for responsive images with URL parameters
+- **1:1 aspect ratio** with entropy-based cropping for consistent display
+- **Quality optimization** (q=80) and auto format selection
+- **Lazy loading** with native browser support for performance
+
+## 🎵 Audio Features
+
+### Music Integration
+- **Audio preview playback** for Spotify and Apple Music tracks
+- **Global playback state** - only one track plays at a time
+- **Visual play/pause indicators** on event cards
+- **Accessible audio controls** with ARIA labels and screen reader support
+- **Singleton audio player** for consistent behavior across components
+
+## 🔐 Security & Performance
+
+### Security
+- **Environment variables** for API keys
+- **Input sanitization** for search queries
+- **XSS prevention** with React's built-in protections
+
+### Performance
+- **Debounced search** (500ms) to reduce API calls
+- **Image lazy loading** and Imgix optimization
+- **Audio singleton pattern** to manage global playback state
+- **Efficient re-renders** with proper dependency arrays and useCallback
+
 ## ♿ Accessibility Considerations
 
 ### WCAG 2.2 AAA Compliance
@@ -182,55 +231,38 @@ npm run dev
 - `npm run test:ui` - Run tests with UI
 - `npm run lint` - Run ESLint
 
-## 📱 Responsive Design
+## 🚀 Future Improvements
 
-### Breakpoints
-- **Mobile**: < 768px (1 column grid)
-- **Tablet**: 768px - 1024px (2 column grid)  
-- **Desktop**: > 1024px (3 column grid)
+### Backend Proxy for Apple Music Previews
+Currently, audio previews only work for Spotify tracks due to CORS restrictions on Apple Music's preview URLs. A future enhancement would be to implement a backend proxy service to:
+- Fetch Apple Music preview audio files server-side
+- Serve them through the backend with proper CORS headers. This would require a Node.js/Express backend endpoint like `/api/proxy-audio?url=...` to bypass cross-origin restrictions.
 
-### Mobile-First Approach
-- Base styles for mobile devices
-- Progressive enhancement for larger screens
-- Touch-friendly interactions (44px minimum targets)
-- Optimized typography scaling
+### Eager Loading Implementation
+Implement eager loading strategies to improve perceived performance and user experience:
+- Preload Critical Resources: Add `<link rel="preload">` tags for above-the-fold images and critical fonts
+- Prefetch Next Page: Implement intelligent prefetching of the next page of events when user approaches the end of current results
+- Image Preloading: Preload images for events that are likely to be viewed next (e.g., next 3-4 events in the grid)
+- Virtual Scrolling: For large event lists, implement virtual scrolling to maintain performance with thousands of events
 
-## 🔧 API Integration
+### User Experience Enhancements
+- Search Suggestions: Add autocomplete/suggestions for venue search with recent searches and popular venues
+- Partical Matches: Add functionality that will match partical matches for the venue search 
+- Filters & Sorting: Implement advanced filtering (date range, price range, event type) and sorting options
+- Favorites System: Allow users to save favorite events with local storage persistence
+- Share Functionality: Add social sharing capabilities for events
 
-### DICE API
-- **Endpoint**: `https://events-api.dice.fm/v1/events`
-- **Authentication**: `x-api-key` header
-- **Query parameters**: `filter[venues]`, `page[size]`, `filter[date_from]`
-- **Error handling**: Graceful degradation with fallback states
+### State Management & Data Flow
+- **React Query/TanStack Query**: Replace manual API state management with React Query for better caching, background updates, and error handling
+- **Context Optimization**: Implement React Context for global state (user preferences, theme) to avoid prop drilling
+- **Memoization**: Add React.memo, useMemo, and useCallback optimizations for expensive computations and re-renders
 
-### Image Optimization
-- **Imgix integration** for responsive images with URL parameters
-- **1:1 aspect ratio** with entropy-based cropping for consistent display
-- **Quality optimization** (q=80) and auto format selection
-- **Lazy loading** with native browser support for performance
-
-## 🎵 Audio Features
-
-### Music Integration
-- **Audio preview playback** for Spotify and Apple Music tracks
-- **Global playback state** - only one track plays at a time
-- **Visual play/pause indicators** on event cards
-- **Accessible audio controls** with ARIA labels and screen reader support
-- **Singleton audio player** for consistent behavior across components
-
-## 🔐 Security & Performance
-
-### Security
-- **Environment variables** for API keys
-- **Input sanitization** for search queries
-- **XSS prevention** with React's built-in protections
-
-### Performance
-- **Debounced search** (500ms) to reduce API calls
-- **Image lazy loading** and Imgix optimization
-- **Audio singleton pattern** to manage global playback state
-- **Efficient re-renders** with proper dependency arrays and useCallback
-
+### Development & Maintenance
+- TypeScript Migration: Convert to TypeScript for better type safety and developer experience
+- Component Library: Extract reusable components into a design system
+- Storybook Integration: Add Storybook for component documentation and testing
+- E2E Testing: Implement end-to-end testing with Playwright or Cypress
+- Performance Monitoring: Add real user monitoring (RUM) and Core Web Vitals tracking
 
 ## 🎉 Final Thoughts
 
@@ -244,13 +276,6 @@ This tech test was a fantastic opportunity to showcase modern React development 
 - **Coming up with punny app names for the project** 
 
 The project demonstrates not just technical competency, but also consideration for real-world users, maintainable code architecture, and attention to detail that goes beyond basic requirements.
-
-## 🚀 Future Improvements
-
-### Backend Proxy for Apple Music Previews
-Currently, audio previews only work for Spotify tracks due to CORS restrictions on Apple Music's preview URLs. A future enhancement would be to implement a backend proxy service to:
-- Fetch Apple Music preview audio files server-side
-- Serve them through the backend with proper CORS headers. This would require a Node.js/Express backend endpoint like `/api/proxy-audio?url=...` to bypass cross-origin restrictions.
 
 ## 🤝 Contributing
 

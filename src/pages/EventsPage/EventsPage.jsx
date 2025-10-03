@@ -166,7 +166,7 @@ const EventsPage = () => {
           ) : (
             <>
               <EventGrid>
-                {events.map((event) => (
+                {events.map((event, index) => (
                   <li key={event.id}>
                     <EventCard
                       event={event}
@@ -175,6 +175,7 @@ const EventsPage = () => {
                       onReminderClick={handleReminderClick}
                       onMoreInfoClick={handleMoreInfoClick}
                       onPlayAudio={handlePlayAudio}
+                      isAboveFold={index < 4}
                     />
                   </li>
                 ))}

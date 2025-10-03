@@ -8,14 +8,15 @@ const EventImage = ({
   isOnSale, 
   hasAudio,
   isPlaying,
-  onPlayAudio 
+  onPlayAudio,
+  isAboveFold = false
 }) => {
 
   const getImgixUrl = (url) => {
     if (!url) return '';
     
     const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}ar=1:1&fit=crop&crop=entropy&w=400&auto=format&q=80`;
+    return `${url}${separator}ar=1:1&fit=crop&crop=entropy&w=400&auto=format&q=85&fm=webp`;
   };
 
   const handlePlayClick = (e) => {
@@ -32,7 +33,10 @@ const EventImage = ({
           src={getImgixUrl(imageUrl)}
           alt={eventName}
           className="event-image__img"
-          loading="lazy"
+          loading={isAboveFold ? "eager" : "lazy"}
+          decoding="async"
+          width="400"
+          height="400"
         />
       ) : (
         <div className="event-image__placeholder">No image available</div>

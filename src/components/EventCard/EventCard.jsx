@@ -10,7 +10,8 @@ const EventCard = ({
   isPlaying,
   onReminderClick, 
   onMoreInfoClick,
-  onPlayAudio 
+  onPlayAudio,
+  isAboveFold = false
 }) => {
   const {
     id,
@@ -76,6 +77,7 @@ const EventCard = ({
         hasAudio={hasAudio}
         isPlaying={isPlaying}
         onPlayAudio={() => onPlayAudio(event)}
+        isAboveFold={isAboveFold}
       />
 
       <div className="event-card__content">
